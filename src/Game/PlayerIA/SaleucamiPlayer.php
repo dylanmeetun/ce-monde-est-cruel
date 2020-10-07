@@ -15,6 +15,16 @@ class SaleucamiPlayer extends Player
     protected $opponentSide;
     protected $result;
 
+    function counter ($opponentChoice) {
+        if ($opponentChoice == parent::rockChoice())
+            $choice = parent::paperChoice();
+        else if ($opponentChoice == parent::paperChoice())
+            $choice = parent::paperChoice();
+        else if ($opponentChoice == parent::scissorsChoice())
+            $choice = parent::paperChoice();
+        return $choice;
+    }
+
     public function getChoice()
     {
         // -------------------------------------    -----------------------------------------------------
@@ -40,16 +50,13 @@ class SaleucamiPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
-
         $choice = parent::scissorsChoice();
+
         $prevOpponent = $this->result->getLastChoiceFor($this->opponentSide);
-        if ($prevOpponent == parent::rockChoice())
-            $choice = parent::paperChoice();
-        else if ($prevOpponent == parent::paperChoice())
-            $choice = parent::paperChoice();
-        else if ($prevOpponent == parent::scissorsChoice())
-            $choice = parent::paperChoice();    
-        return $choice;
+        if ($this->result->getNbRound() % 2 == 1)
+            return $this->counter($prevOpponent);
+        else
+            return $this->counter($this->counter($prevOpponent));
 
     }
 };
