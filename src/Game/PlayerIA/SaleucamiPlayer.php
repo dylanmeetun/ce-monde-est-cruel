@@ -7,7 +7,8 @@ use Hackathon\Game\Result;
 /**
  * Class SaleucamiPlayers
  * @package Hackathon\PlayerIA
- * @author YOUR NAME HERE
+ * @author DYLAN MEETUN
+ * My strategy is to counter the opponent's previous move and change strategy every third round if I am losing to my opponent
  */
 class SaleucamiPlayer extends Player
 {
