@@ -41,10 +41,15 @@ class SaleucamiPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
 
-        if ($this->result->getNbRound() == 0) {
-            return parent::paperChoice();
-        }
-        return $this->result->getLastChoiceFor($this->opponentSide);
+        $choice = parent::scissorsChoice();
+        $prevOpponent = $this->result->getLastChoiceFor($this->opponentSide);
+        if ($prevOpponent == parent::rockChoice())
+            $choice = parent::paperChoice();
+        else if ($prevOpponent == parent::paperChoice())
+            $choice = parent::paperChoice();
+        else if ($prevOpponent == parent::scissorsChoice())
+            $choice = parent::paperChoice();    
+        return $choice;
 
     }
 };
