@@ -62,7 +62,7 @@ class SaleucamiPlayer extends Player
         if ($strategy % 2 == 0)
             return $this->counter($prevOpponent);
         else
-            return $this->counter($this->counter($prevOpponent));
+            return $this->counter($this->counter($this->counter($prevOpponent)));
 
     }
 };
